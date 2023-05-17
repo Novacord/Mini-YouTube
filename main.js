@@ -17,7 +17,7 @@ boton.addEventListener('click', (e)=>{
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '837d4091fcmsh3361d584d6e55d1p16ff2djsne4ee20107e39',
+		'X-RapidAPI-Key': 'de4f916e83msh7e080eca808af76p191f15jsn4aba816ee87b',
 		'X-RapidAPI-Host': 'youtube138.p.rapidapi.com'
 	}
 };
@@ -108,14 +108,13 @@ async function VideoRelatedContents(codigoVideo){
         let VideoRelated = document.getElementById('descript')
         let cajaVideo = ''
 
-        for (let i = 0; i < 3; i++) {
+        result.contents.slice(1,4).forEach(Item => {
           cajaVideo += `
           <div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/${result.contents[i].video.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+            <iframe width="200" height="200" src="https://www.youtube.com/embed/${Item.video.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
           </div>
         `  
-        }
-        
+        })
         console.log(cajaVideo)
         VideoRelated.innerHTML = cajaVideo
     } catch (error) {
