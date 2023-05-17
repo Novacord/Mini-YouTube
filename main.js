@@ -106,13 +106,17 @@ async function VideoRelatedContents(codigoVideo){
         const result = await response.json();
         console.log(result);
         let VideoRelated = document.getElementById('descript')
-        let cajaVideo = `
-        <div><img src="${result.contents[0].video.thumbnails[0].url}"><p>${result.contents[0].video.title}</p></div>
-        <div><img src="${result.contents[1].video.thumbnails[0].url}"><p>${result.contents[1].video.title}</p></div>
-        <div><img src="${result.contents[2].video.thumbnails[0].url}"><p>${result.contents[2].video.title}</p></div>
-        <div><img src="${result.contents[3].video.thumbnails[0].url}"><p>${result.contents[3].video.title}</p></div>
-        <div><img src="${result.contents[4].video.thumbnails[0].url}"><p>${result.contents[4].video.title}</p></div>
-        `
+        let cajaVideo = ''
+
+        for (let i = 0; i < 3; i++) {
+          cajaVideo += `
+          <div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/${result.contents[i].video.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+          </div>
+        `  
+        }
+        
+        console.log(cajaVideo)
         VideoRelated.innerHTML = cajaVideo
     } catch (error) {
         console.error(error);
